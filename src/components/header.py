@@ -9,7 +9,7 @@ def render_header(logo_path):
     with col2:
         st.image(logo_path, width=200)
 
-    st.title("Equivalência de Disciplinas")
-    st.caption("Uma ferramenta para auxiliar e automatizar a comissão de equivalência de disciplinas.")
+    st.title("Guia de Equivalência de Disciplinas")
+    st.caption("Uma ferramenta para auxiliar e guiar os alunos no processo de equivalência de disciplinas.")
 
     st.divider()

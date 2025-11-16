@@ -26,7 +26,7 @@ def main():
     
     # --- Configuração da Página ---   
     st.set_page_config(
-        page_title="Analisador de Equivalências",
+        page_title="Guia de Equivalências",
         page_icon=FAVICON_PATH,
         layout="centered"
     )
@@ -38,7 +38,7 @@ def main():
         st.session_state.analysis_results = []
 
     # --- Renderização dos Componentes Visuais Estáticos ---
-    render_sidebar()
+    # render_sidebar()
     render_header(LOGO_PATH)
 
     # --- ETAPA 1: CARREGAMENTO E VALIDAÇÃO DOS DADOS (DA URL) ---
@@ -73,7 +73,7 @@ def main():
     # Esta lógica permanece a mesma. 
     # Ela só vai rodar se a 'ETAPA 1' for bem-sucedida.
     if st.session_state.spreadsheet_data:
-        st.subheader("2. Selecione a Universidade e Insira os Códigos")
+        st.subheader("1. Selecione a Universidade e Insira os Códigos")
         
         col1, col2 = st.columns([1, 2])
         
@@ -118,20 +118,21 @@ def main():
 
         # --- ETAPA 6: GERAÇÃO DO PDF (CONDICIONAL) ---
         if not has_not_found:
-            st.subheader("3. Gerar Relatório")
             st.success("Todas as disciplinas foram encontradas! Você já pode gerar o relatório.")
+        
+        #     st.subheader("3. Gerar Relatório")
 
-            pdf_bytes = create_pdf_bytes(st.session_state.analysis_results)
-            st.download_button(
-                label="Baixar Relatório em PDF",
-                data=pdf_bytes,
-                file_name="relatorio_equivalencia.pdf",
-                mime="application/pdf",
-                use_container_width=True
-            )
+        #     pdf_bytes = create_pdf_bytes(st.session_state.analysis_results)
+        #     st.download_button(
+        #         label="Baixar Relatório em PDF",
+        #         data=pdf_bytes,
+        #         file_name="relatorio_equivalencia.pdf",
+        #         mime="application/pdf",
+        #         use_container_width=True
+        #     )
 
         else:
-            st.error("⚠️ **Atenção:** Algumas disciplinas não foram encontradas na planilha. O relatório final não pode ser gerado até que todas as disciplinas sejam verificadas manualmente ou os códigos corrigidos.")
+            st.error("⚠️ **Atenção:** Algumas disciplinas não foram encontradas na planilha.")
 
 
 if __name__ == "__main__":
